@@ -38,6 +38,9 @@
           <i class="fa fa-comment"></i>
           <a href="#comments"><%= @post_image.post_comments.count %></a>
         </li>
+        <li>
+          <%= link_to "削除", post_image_path(@post_image), method: :delete %>
+        </li>
       </ul>
       <div class="post-content-inner mt-20">
         <p><%= @post_image.caption %></p>
@@ -65,13 +68,11 @@
                         </span>
                       </div>
                       <div class="comment-entry"><%= post_comment.comment %></div>
-                      <% if post_comment.user == current_user %>
-                        <div>
-                          <%= link_to "削除", post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete, class: "btn btn-danger pull-right" %>
-                        </div>
-                      <% end %>
+                       <% if @post_image.user == current_user %>
+                        <%= link_to "削除", post_image_path(@post_image), method: :delete %>
+                       <% end %>
+                      </div>
                     </div>
-                  </div>
                 </li>
               <% end %>
             </ol>
